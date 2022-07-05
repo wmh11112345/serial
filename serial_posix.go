@@ -50,7 +50,7 @@ func (p *port) Open(c *Config) (err error) {
 	// See man termios(3).
 	// O_NOCTTY: no controlling terminal.
 	// O_NDELAY: no data carrier detect.
-	p.fd, err = syscall.Open(c.Address, syscall.O_RDWR|syscall.O_NOCTTY|syscall.O_NDELAY|syscall.O_CLOEXEC, 0666)
+	p.fd, err = syscall.Open(c.Address, syscall.O_RDWR|syscall.O_NOCTTY|syscall.O_NDELAY|syscall.O_CLOEXEC|syscall.TIOCM_CTS|syscall.TIOCM_RTS, 0666)
 	if err != nil {
 		return
 	}
